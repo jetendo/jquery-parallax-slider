@@ -7,10 +7,6 @@
 - GitHub Home Page: https://github.com/jetendo/jquery-parallax-slider
 - This component is part of Jetendo CMS, https://www.jetendo.com/, but is designed to function on its own.
 
-## Usage
-
-Download the project and place the files in a web site that has CFML configured.  
-
 ## Examples
 
 https://www.jetendo.com/manual/view/current/2.4.1/jquery-parallax-slider-examples.html
