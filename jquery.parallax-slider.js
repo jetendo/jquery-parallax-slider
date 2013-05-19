@@ -16,6 +16,7 @@ var zParallaxSlider=function(initObject){
 	this.defaultSlideElementOutDuration=2000;
 	this.defaultSlideElementInDelay=400;
 	this.defaultSlideElementOutDelay=0;
+	this.defaultAnimatedBackgroundEasing="linear";
 	this.defaultSlideEasing="swing";
 	this.defaultSlideOutEasing="swing";
 	this.defaultSlideElementInEasing="swing";
@@ -482,7 +483,15 @@ var zParallaxSlider=function(initObject){
 				var curYOffset=0;
 				var curHeight=0;
 				d[i2].arrAnimateBackgroundOut=[];
-				var defaultAnimatedBackgroundConfig={type:'loop',animateX:0,animateY:0, durationX:this.defaultAnimatedBackgroundDuration, durationY:this.defaultAnimatedBackgroundDuration};
+				var defaultAnimatedBackgroundConfig={
+					type:'loop',
+					animateX:0,
+					animateY:0, 
+					durationX:this.defaultAnimatedBackgroundDuration, 
+					durationY:this.defaultAnimatedBackgroundDuration, 
+					easingX:this.defaultAnimatedBackgroundEasing,
+					easingY:this.defaultAnimatedBackgroundEasing,
+				};
 				for(var n=0;n<arrBg.length;n++){
 					var n2=$(arrBg[n]);
 					if(n2[0].style.marginTop){
@@ -579,16 +588,15 @@ var zParallaxSlider=function(initObject){
 		}, this.currentSlideDuration);
 		
 	}
-		
 	this.animateBackgroundOut=function(a){	
-		$(a.elem).css( {"background-position": "0px 0px"} ).animate({"backgroundPositionX": a.elem.zPSlideAnimatedBackgroundConfig.animateX}, {duration:a.elem.zPSlideAnimatedBackgroundConfig.durationX, queue:false, easing:"linear"});
-		$(a.elem).css( {"background-position": "0px 0px"} ).animate({"backgroundPositionY": a.elem.zPSlideAnimatedBackgroundConfig.animateY}, {duration:a.elem.zPSlideAnimatedBackgroundConfig.durationY, queue:false, easing:"linear"});
+		$(a.elem).css( {"background-position": "0px 0px"} ).animate({"backgroundPositionX": a.elem.zPSlideAnimatedBackgroundConfig.animateX}, {duration:a.elem.zPSlideAnimatedBackgroundConfig.durationX, queue:false, easing:a.elem.zPSlideAnimatedBackgroundConfig.easingX});
+		$(a.elem).css( {"background-position": "0px 0px"} ).animate({"backgroundPositionY": a.elem.zPSlideAnimatedBackgroundConfig.animateY}, {duration:a.elem.zPSlideAnimatedBackgroundConfig.durationY, queue:false, easing:a.elem.zPSlideAnimatedBackgroundConfig.easingY});
 	}
 	this.animateBackgroundX=function(a){	
 		if(a.elem.zPSlideAnimatedBackgroundConfig.type=='loop'){
 			if(a.elem.zPSlide.slideIndex==a.elem.zPSlideSlideIndex){
 				var c=a.elem.style.backgroundPosition.split(" ");
-				$(a.elem).css( {"background-position": "0px "+c[1]} ).animate({"backgroundPositionX": a.elem.zPSlideAnimatedBackgroundConfig.animateX}, {duration:a.elem.zPSlideAnimatedBackgroundConfig.durationX, queue:false, easing:"linear", done:a.elem.zPSlide.animateBackgroundX});
+				$(a.elem).css( {"background-position": "0px "+c[1]} ).animate({"backgroundPositionX": a.elem.zPSlideAnimatedBackgroundConfig.animateX}, {duration:a.elem.zPSlideAnimatedBackgroundConfig.durationX, queue:false, easing:a.elem.zPSlideAnimatedBackgroundConfig.easingX, done:a.elem.zPSlide.animateBackgroundX});
 			}else{
 				setTimeout(function(){a.elem.zPSlide.animateBackgroundX({elem:a.elem})}, 50);
 			}
@@ -598,7 +606,7 @@ var zParallaxSlider=function(initObject){
 		if(a.elem.zPSlideAnimatedBackgroundConfig.type=='loop'){
 			if(a.elem.zPSlide.slideIndex==a.elem.zPSlideSlideIndex){
 				var c=a.elem.style.backgroundPosition.split(" ");
-				$(a.elem).css( {"background-position": c[0]+" 0px"} ).animate({"backgroundPositionY": a.elem.zPSlideAnimatedBackgroundConfig.animateY}, {duration:a.elem.zPSlideAnimatedBackgroundConfig.durationY, queue:false, easing:"linear", done:a.elem.zPSlide.animateBackgroundY});
+				$(a.elem).css( {"background-position": c[0]+" 0px"} ).animate({"backgroundPositionY": a.elem.zPSlideAnimatedBackgroundConfig.animateY}, {duration:a.elem.zPSlideAnimatedBackgroundConfig.durationY, queue:false, easing:a.elem.zPSlideAnimatedBackgroundConfig.easingY, done:a.elem.zPSlide.animateBackgroundY});
 			}else{
 				setTimeout(function(){a.elem.zPSlide.animateBackgroundY({elem:a.elem})}, 50);
 			}
