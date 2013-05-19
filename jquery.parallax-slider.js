@@ -412,6 +412,23 @@ var zParallaxSlider=function(initObject){
 		}
 		return configObj;
 	}
+	this.setSlideAnimatedBackgroundConfig=function(configObj){
+		var defaultConfig={
+			type:'loop',
+			animateX:0,
+			animateY:0, 
+			durationX:this.defaultAnimatedBackgroundDuration, 
+			durationY:this.defaultAnimatedBackgroundDuration, 
+			easingX:this.defaultAnimatedBackgroundEasing,
+			easingY:this.defaultAnimatedBackgroundEasing,
+		};
+		for(var n in defaultConfig){
+			if(typeof configObj[n] == "undefined"){
+				configObj[n]=defaultConfig[n];
+			}
+		}
+		return configObj;
+	}
 	this.init=function(obj){
 		for(var i in obj){
 			this[i]=obj[i];
@@ -483,15 +500,6 @@ var zParallaxSlider=function(initObject){
 				var curYOffset=0;
 				var curHeight=0;
 				d[i2].arrAnimateBackgroundOut=[];
-				var defaultAnimatedBackgroundConfig={
-					type:'loop',
-					animateX:0,
-					animateY:0, 
-					durationX:this.defaultAnimatedBackgroundDuration, 
-					durationY:this.defaultAnimatedBackgroundDuration, 
-					easingX:this.defaultAnimatedBackgroundEasing,
-					easingY:this.defaultAnimatedBackgroundEasing,
-				};
 				for(var n=0;n<arrBg.length;n++){
 					var n2=$(arrBg[n]);
 					if(n2[0].style.marginTop){
@@ -510,11 +518,7 @@ var zParallaxSlider=function(initObject){
 						}else{
 							c={};
 						}
-						for(var i in defaultAnimatedBackgroundConfig){
-							if(typeof c[i] == "undefined"){
-								c[i]=defaultAnimatedBackgroundConfig[i];
-							}
-						}
+						c=curObj.setSlideAnimatedBackgroundConfig(c);
 						
 						if(this.style.marginTop){
 							this.style.top=(curYOffset+parseInt(n2[0].style.marginTop))+"px";
