@@ -1,0 +1,6 @@
+
+.zPSlideElement{z-index:1000;display:none; float:none !important; position:absolute; left:0px; top:0px;opacity:1;}
+.zPSlideCenter{position:relative; left:0px; z-index:500; top:0px;}
+.zPSlideAnimatedBackground{position:relative; left:0px; top:0px;z-index:1; margin-top:0px; margin-left:0px;}
+.zPSlideElement{display:none;z-index:10;}
+.zPSlide{display:none;z-index:1;}
