@@ -23,7 +23,7 @@ jquery-parallax-slider has been tested with modern browsers include IE7+, Chrome
 
 ## License
 
-cssSpriteMap-dot-cfc is Open Source under the MIT license  
+jquery-parallax-slider is Open Source under the MIT license  
 http://www.opensource.org/licenses/mit-license.php
 
 Copyright &copy; 2013 Far Beyond Code LLC  
