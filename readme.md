@@ -9,7 +9,7 @@
 
 ## Examples
 
-https://www.jetendo.com/manual/view/current/2.4.1/jquery-parallax-slider-examples.html
+Open the example.html file in your browser.
 
 Read the example source code and the online documentation on the project home page to learn more.
 
