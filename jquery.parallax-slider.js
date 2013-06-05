@@ -421,7 +421,7 @@
 			durationX:this.defaultAnimatedBackgroundDuration, 
 			durationY:this.defaultAnimatedBackgroundDuration, 
 			easingX:this.defaultAnimatedBackgroundEasing,
-			easingY:this.defaultAnimatedBackgroundEasing,
+			easingY:this.defaultAnimatedBackgroundEasing
 		};
 		for(var n in defaultConfig){
 			if(typeof configObj[n] == "undefined"){
