@@ -1,5 +1,6 @@
 
-var zParallaxSlider=function(initObject){
+(function($) {
+	var zParallaxSlider=function(initObject){
 	this.slideDuration=2000;
 	this.fadeInDuration=1000;
 	this.fadeIn=true;
@@ -619,7 +620,6 @@ var zParallaxSlider=function(initObject){
 	this.init(initObject);
 };
 
-(function($) {
 	 $.fn.parallaxSlider = function(initObject){
 		 return this.each(function(){
 			 initObject.container=this;
