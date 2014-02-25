@@ -3,7 +3,7 @@
 - Purpose: A jQuery Slideshow with support for multiple layers of animation within each slide.
 - Version: 0.1.000
 - Language(s) used: Javascript
-- Project Home Page: https://www.jetendo.com/manual/view/current/2.4/jquery-parallax-slider.html
+- Project Home Page: https://www.jetendo.com/z/admin/manual/view/9.2.4/jquery-parallax-slider.html
 - GitHub Home Page: https://github.com/jetendo/jquery-parallax-slider
 - This component is part of Jetendo CMS, https://www.jetendo.com/, but is designed to function on its own.
 
