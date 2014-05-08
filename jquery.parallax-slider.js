@@ -447,6 +447,19 @@
 			curObj.currentSlideSliderObj=d[0];
 			d=$(".zPSlide", this);
 			curObj.slideCount=d.length;
+			
+			if(typeof obj.setButtons != "undefined"){
+				for(var i=0;i<obj.setButtons.length;i++){
+					var s=obj.setButtons[i];
+					s.PSlide=curObj;
+					$(s).bind("click", function(){
+						var slideIndex=parseInt(this.getAttribute("data-slide-index"))-1;
+						console.log(this);
+						this.PSlide.setupSlideOut(slideIndex);
+						return false;
+					});
+				}
+			}
 			for(var i2=0;i2<d.length;i2++){
 				curObj.arrSlideObj[i2]=d[i2];
 				var slideConfig=d[i2].getAttribute("data-config");
@@ -461,7 +474,7 @@
 				
 				d[i2].zPSlide=curObj;
 				if(i2!=0){
-					d[i2].style.top=-($(d[i2]).height()*i2)+"px"
+					d[i2].style.top=-($(d[i2]).height()*i2)+"px";
 				}
 				var arrSlideElements=$(".zPSlideElement", d[i2]);
 				for(var i=0;i<arrSlideElements.length;i++){
