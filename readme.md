@@ -11,7 +11,7 @@
 
 Open the example.html file in your browser.
 
-Read the example source code and the online documentation on the project home page to learn more.
+Read the source code of the example files and documentation.html to learn more about configuring the slideshow and building complex animations.
 
 ## Compatibility
 

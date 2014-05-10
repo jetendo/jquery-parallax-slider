@@ -1,0 +1,249 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" xmlns="http://www.w3.org/1999/xhtml"> <!--<![endif]-->
+<head>
+<title>
+jQuery Parallax Slider Plug-in Examples
+</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="jquery.parallax-slider.css" />
+<style type="text/css">
+/* <![CDATA[ */
+#sliderPrev, #sliderNext{display:none;background-color:#900; color:#FFF; z-index:100; position:relative;width:40px; text-align:center; font-size:24px; float:left; padding:10px;  cursor:pointer;text-decoration:none;}
+#sliderPrev:hover, #sliderNext:hover{ background-color:#C00;}
+#sliderPrev2, #sliderNext2{display:none;background-color:#900; color:#FFF; z-index:100; position:relative;width:40px; text-align:center; font-size:24px; float:left; padding:10px;  cursor:pointer;text-decoration:none;}
+#sliderPrev2:hover, #sliderNext2:hover{ background-color:#C00;}
+#sliderPrev3, #sliderNext3{display:none;background-color:#900; color:#FFF; z-index:100; position:relative;width:40px; text-align:center; font-size:24px; float:left; padding:10px;  cursor:pointer;text-decoration:none;}
+#sliderPrev3:hover, #sliderNext3:hover{ background-color:#C00;}
+/* ]]> */
+</style>
+<script src="example-files/jquery.1.9.1.min.js"></script>
+<script src="jquery.parallax-slider.js"></script>
+<script src="example-files/jquery.animate-colors.js"></script>
+<script src="example-files/jquery.easing.1.3.js"></script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+
+$(document).ready(function(){
+	var c={
+		prev:$("#sliderPrev"),
+		next:$("#sliderNext"),
+		transition:'horizontal', 
+		debug:false
+	}
+	//$("#sliderContainer").hide();
+	var p=$("#sliderContainer").parallaxSlider(c);
+	c={
+		prev:$("#sliderPrev2"),
+		next:$("#sliderNext2"),
+		transition:'vertical', 
+		debug:false,
+		slideBeginCallback:function(slideObj){
+			if(typeof slideObj.originalBackgroundColor == "undefined"){
+				slideObj.originalBackgroundColor=slideObj.style.backgroundColor;
+			}
+			$(slideObj).css("background-color", "#000").animate({backgroundColor:slideObj.originalBackgroundColor}, {duration:500, queue:false});
+		},
+		slideEndCallback:function(slideObj){
+			$(slideObj).css("background-color", slideObj.originalBackgroundColor).animate({backgroundColor:"#000"}, {duration:500, queue:false});
+				
+		}
+	}
+	//$(c.container).hide();
+	var p=$("#sliderContainer2").parallaxSlider(c);
+	var c={
+		prev:$("#sliderPrev3"),
+		next:$("#sliderNext3"),
+		transition:'crossfade', 
+		debug:false,
+		autoplay:false
+	}
+	//$("#sliderContainer3").hide();
+	var p=$("#sliderContainer3").parallaxSlider(c);
+	
+	
+});
+/* ]]> */
+</script> 
+</head>
+<body>
+<div style="padding-left:1%; padding-top:10px; width:97%; min-width:600px; max-width:960px; float:left;">
+<h1>jQuery Parallax Slider Plug-in Documentation</h1>
+
+<h2>Requirements</h2>
+<p><a href="http://code.jquery.com/jquery.min.js" target="_blank">Jquery 1.9 or newer</a></p>
+<h2>Optional jquery plugins:</h2>
+<ul>
+<li><a href="https://github.com/gdsmith/jquery.easing" target="_blank">jQuery easing plugin</a></li>
+<li><a href="http://www.bitstorm.org/jquery/color-animation/" target="_blank">jquery Color animation plugin</a></li>
+</ul>
+<h2>Intro</h2>
+<p>This plugin is designed to make it easy to create layered animations that also transition to new slides like a regular slideshow.</p>
+<p>Parallax Scrolling is a cool visual effect that has been used for decades in games and media to give the illusion of 3d depth when only using flat 2d objects such as images &amp; textures.</p>
+<p>To create this effect, you need to animate each layer at a different rate of speed.</p>
+<p>For example, if you had a landscape scene, things in the far off distance, such as a sky & mountain photo, would move more slowly then things closer to the camera, such plateau overlooking the valley, and trees in the foreground.</p>
+<p>As a designer, you'll have to create these compelling images.</p>
+<p>Search google for ideas of <a href="https://www.google.com/search?q=parallax+scrolling+animations" target="_blank">parallax scrolling animations</a> when deciding how to design &amp; build the various layers of your animation.</p>
+<p>In addition to allow repeating textures to animate on multiple layers in the background of a slide, this plugin also allows smaller elements to be animated within the slide to do more then just parallax scrolling effects.</p>
+<p>Hopefully, this plugin will help you achieve the desired effect for all your animations, but if it doesn't, let us know on github about your idea.</p>
+<h2>Getting Started With The Code</h2>
+<p>Assuming you have a properly structured HTML in your document, you can create a new instance of this parallax slider, with simple code like this in the &lt;head&gt; tag of your document:</p>
+<blockquote>
+  <p>
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;jquery.parallax-slider.css&quot; /&gt;<br />
+    &lt;script src=&quot;example-files/jquery.1.9.1.min.js&quot;&gt;&lt;/script&gt;<br />
+    &lt;script src=&quot;jquery.parallax-slider.js&quot;&gt;&lt;/script&gt;<br />
+    &lt;script src=&quot;example-files/jquery.animate-colors.js&quot;&gt;&lt;/script&gt;<br />
+    &lt;script src=&quot;example-files/jquery.easing.1.3.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;<br />
+    $(document).ready(function(){<br />
+    options={};<br />
+    var p=$(&quot;#sliderContainer&quot;).parallaxSlider(options);<br />
+    });<br />
+    &lt;/script&gt;</p>
+</blockquote>
+<h2>Global Options</h2>
+<p> The options supported by the parallaxSlider() function are fully documented at the top of the jquery.parallax-slider.js file.</p>
+<h2>Building Animations</h2>
+<p> In addition to configuring those global javascript options, it is also posible to configure individual slides, slide elements, and slide animated backgrounds using simple JSON (Javascript Object Notation) syntax to augment what is possible with regular CSS in order to support advanced animations without having to write complex javascript.  The following describes the json structure allowed for each of the element types.</p>
+<h2>HTML Structure Documentation</h2>
+<p>Keep in mind that the nested structure of the HTML is an important part making sure your elements appear on the correct slide and are rigged correctly by this jquery plugin. The purpose of each element is described in the HTML comments below.</p>
+<p>&lt;!-- Outermost container must be given class name of zPSlideContainer --&gt;<br />
+  &lt;div id=&quot;slideContainer&quot; class=&quot;zPSlideContainer&quot; style=&quot;width:100%; height:300px;position:relative; float:left; overflow:hidden;&quot;&gt;</p>
+<blockquote>
+  <p> &lt;!-- You must also have a container for the slide elements with the class name of zPSlideSlider --&gt;<br />
+    &lt;div class=&quot;zPSlideSlider&quot; style=&quot;float:left;width:100%;position:relative;&quot;&gt;</p>
+  <blockquote>
+    <p> &lt;!-- Now you can create 1 or more slides with the class name zPSlide.  Notice the data-config=&quot;&quot; code below.  This is how you change the animation options available for that specific slide. --&gt;<br />
+      &lt;div class=&quot;zPSlide&quot; data-config=&quot;{transition:'vertical',begin:{duration:5000}}&quot; style=&quot;position:relative;width:100%; height:300px; left:0px; top:0px;  background-color:#060;&quot;&gt;</p>
+    <blockquote>
+      <p> &lt;!-- There are 3 kinds of special elements that can be inside a slide element.  --&gt;</p>
+      <p> &lt;!-- The first is an animated background with the class name zPSlideAnimatedBackground.  Notice the use of &quot;data-background-image&quot; attribute for specifying the image url instead of using background-image css.  This is done so that the images can be &quot;lazy loaded&quot; the first time the slide is displayed.  This means only your first slide will be loaded on first load, making for a fast loading experience.  A few of these element moving at different durations will allow creating a parallax scrolling effect.  You'll want to use repeating texture images if this is your goal.  Note that it is also possible to animate a background horizontally and vertically at different speeds.  More info is provided further down this documentation page.  --&gt;<br />
+        &lt;div class=&quot;zPSlideAnimatedBackground&quot; data-config=&quot;{durationX:1000, animateX:136, animateY:136}&quot; data-background-image=&quot;example-files/plasmad.png&quot; style=&quot; background-repeat:repeat; background-position:0px 0px; width:100%; height:300px;&quot;&gt;&lt;/div&gt;</p>
+      <p> &lt;!-- The second element type is given a class name of zPSlideCenter.  This element is a container for any additional elements you may want to animate that are not repeating texture backgrounds.  It is required in order to ensure the relative positioning when resizing the browser.  This allows for the slideshow to be stretched the full width of the browser, but no smaller then the width of this container element. --&gt;<br />
+        &lt;div class=&quot;zPSlideCenter&quot; style=&quot;width:600px; height:300px; margin:0 auto;position:relative;&quot;&gt;</p>
+      <blockquote>
+        <p> &lt;!-- The third element type is given a class name of zPSlideElement.  This is for smaller objects that you want to have animate in various ways with configurable delay, duration, easing and position.  For example, you could a box that fades in while moving from top to bottom which doesn't start animating for 500 milliseconds through the use of CSS and the data-config json object.  --&gt;<br />
+          &lt;div class=&quot;zPSlideElement&quot; style=&quot; z-index:1001; left:300px; top:50px; width:100px; height:20px; background-color:#900;&quot;  data-config=&quot;{begin:{opacity:0, left:-100, top:0, duration:1000}, end:{opacity:0, left:0, top:0}}&quot;&gt;&lt;/div&gt;<br />
+          &lt;div class=&quot;zPSlideElement&quot; style=&quot;z-index:1002; left:50px; top:200px; width:50px; height:100px; background-color:#090;&quot; data-config=&quot;{begin:{opacity:0, left:-100, top:50, delay:500, duration:700}, end:{opacity:0, left:0, top:0}}&quot;&gt;&lt;/div&gt;<br />
+          &lt;div class=&quot;zPSlideElement&quot; style=&quot;z-index:1003; left:150px; top:120px; width:70px; height:50px; background-color:#009;&quot; data-config=&quot;{begin:{opacity:0, left:-100, top:200, delay:1000, duration:500}, end:{opacity:0, left:0, top:0}}&quot;&gt;&lt;/div&gt;</p>
+      </blockquote>
+      <p>       &lt;/div&gt;</p>
+    </blockquote>
+    <p>     &lt;/div&gt;</p>
+    <p> &lt;!-- here you can have other slides with animated elements in them which don't appear until the slideshow is transitioned to the next slide. --&gt;<br />
+      &lt;div class=&quot;zPSlide&quot; data-config=&quot;{transition:'horizontal',begin:{duration:5000}}&quot; style=&quot;position:relative;width:100%; height:300px; left:0px; top:0px; background-color:#006;&quot;&gt;<br />
+      &lt;div class=&quot;zPSlideAnimatedBackground&quot; data-config=&quot;{type:'transition',duration:400, animateX:'100%'}&quot; data-background-image=&quot;example-files/plasma.png&quot; style=&quot; background-repeat:repeat; background-position:0px 0px; width:100%; margin-top:95px; height:121px;&quot;&gt;&lt;/div&gt;<br />
+      &lt;div class=&quot;zPSlideCenter&quot; style=&quot;width:600px; height:300px; margin:0 auto;position:relative;&quot;&gt;<br />
+      &lt;div class=&quot;zPSlideElement&quot; style=&quot;z-index:1001; left:200px; top:200px; width:20px; height:50px; background-color:#900;&quot; data-config=&quot;{begin:{opacity:0, left:-100, top:50, delay:1000, duration:1000}, end:{opacity:0, left:0, top:0}}&quot;&gt;&lt;/div&gt;<br />
+      &lt;div class=&quot;zPSlideElement&quot; style=&quot;z-index:1002; left:0px; top:70px; width:350px; font-size:48px; line-height:48px; color:#FFF;&quot; data-config=&quot;{begin:{opacity:0, left:-100, top:0, delay:500, duration:700}, end:{opacity:0, left:0, top:0}}&quot;&gt;Any HTML can be animated&lt;/div&gt;<br />
+      &lt;div class=&quot;zPSlideElement&quot; style=&quot;z-index:1003; left:300px; top:130px; width:250px; height:50px; background-color:#009;&quot; data-config=&quot;{begin:{opacity:0, left:-100, top:100, duration:500}, end:{opacity:0, left:0, top:0}}&quot;&gt;&lt;/div&gt;<br />
+      &lt;/div&gt;</p>
+  </blockquote>
+  <p> &lt;/div&gt;</p>
+</blockquote>
+<p> &lt;/div&gt;</p>
+<p>&lt;!-- Anywhere in your HTML document, you can also create buttons that can be registered for advancing the slideshow backwards and forwards. --&gt;<br />
+  &lt;a href=&quot;#&quot; id=&quot;sliderPrev&quot; style=&quot;margin-top:-170px; margin-left:5%;&quot;&gt;&amp;lt;&lt;/a&gt; &lt;a href=&quot;#&quot; id=&quot;sliderNext&quot; style=&quot;margin-top:-170px; float:right;margin-right:5%;&quot;&gt;&amp;gt;&lt;/a&gt;</p>
+<p> &lt;!-- You can also create a set of buttons which can be clicked to switch to a specific slide. Notice the &quot;data-slide-index&quot; attribute is provided, which identifies the slide that button will show.  Note that we are not using the 0 index for this value, you must start with 1 for the first slide. --&gt;<br />
+  &lt;div class=&quot;slideNavButtons&quot;&gt;<br />
+  &lt;div style=&quot;width:330px;&quot;&gt;<br />
+  &lt;a href=&quot;#&quot; class=&quot;slideSetButton&quot; data-slide-index=&quot;1&quot;&gt;Slide1&lt;/a&gt;<br />
+  &lt;a href=&quot;#&quot; class=&quot;slideSetButton&quot; data-slide-index=&quot;2&quot;&gt;Slide2&lt;/a&gt;<br />
+  &lt;a href=&quot;#&quot; class=&quot;slideSetButton&quot; data-slide-index=&quot;3&quot;&gt;Slide3&lt;/a&gt;<br />
+  &lt;/div&gt;<br />
+  &lt;/div&gt;<br />
+  &lt;!-- You use the setButtons option like this to register them with the parallaxSlider function --&gt;<br />
+  &lt;script type=&quot;text/javascript&quot;&gt;<br />
+  $(document).ready(function(){<br />
+  options={<br />
+  setButtons:$(&quot;.slideSetButton&quot;)<br />
+  };<br />
+  var p=$(&quot;#sliderContainer&quot;).parallaxSlider(options);<br />
+  });<br />
+  &lt;/script&gt;<br />
+</p>
+<h2>JSON Object Documentation</h2>
+<p>Below we explain the custom JSON object structure supported on each class name.  Most of the JSON object keys and values are optional.  Adjust only the values you want to animate / change, and the global defaults will be used for the rest.</p>
+<h3>.zPSlideContainer</h3>
+<p>This element doesn't support any custom JSON data attributes.</p>
+<hr />
+<h3>.zPSlideSlider</h3>
+<p>This element doesn't support any custom JSON data attributes.</p>
+<hr />
+<h3>.zPSlide</h3>
+<p> This element supports an HTML Data attribute called &quot;data-config&quot;, which can accept the following structure.  Note all keys are optional including the data-config attribute itself.  This works because parallaxSlider has default values for all options, which can be overrided with the parallaxSlider(options) function.  Refer to the option documentation at the top of jquery.parallax-slider.js for more information.</p>
+<p> {</p>
+<blockquote>
+  <p> transition:'horizontal', /* valid values are 'horizontal', 'vertical' or 'crossfade' */<br />
+    begin:{ </p>
+  <blockquote>
+    <p> duration:5000, /* length of time the slide transition &quot;in&quot; animation. Measured in milliseconds. */<br />
+      easing: 'easeInSine' /* easing used for the &quot;in&quot; animation. Note: you may need the jquery easing plug-in for most easing types. */</p>
+  </blockquote>
+  <p> },<br />
+    end:{</p>
+  <blockquote>
+    <p> duration:5000, /* length of time the slide transition &quot;out&quot; animation. Measured in milliseconds. */<br />
+      easing: 'easeOutSine' /* easing used for the &quot;out&quot; animation. Note: you may need the jquery easing plug-in for most easing types. */</p>
+  </blockquote>
+  <p> }</p>
+</blockquote>
+<p> }</p>
+<p> Notice that there is no option for configuring the duration of the slide.  The slide duration is automatically determined by waiting for all nested animations to complete their &quot;in&quot; animation AND duration timeouts.  This makes saves you doing from having to do the math.</p>
+<hr />
+<h3>.zPSlideAnimatedBackground</h3>
+<p> This element supports an HTML Data attribute called &quot;data-config&quot;, which can accept the following structure.</p>
+<p> {</p>
+<blockquote>
+  <p> type:'transition', /* valid values are 'transition' or 'loop' | transition occurs once when the slide &quot;in&quot; animation begins. &quot;loop&quot; continues the animation infinitely until the slide &quot;out&quot; animation begins. */<br />
+    duration:400, /* Set animation duration when using type:'transition'. Measured in milliseconds. */ <br />
+    durationX:1000, /* change the duration of the X background-position animation only. Measured in milliseconds. */<br />
+    durationY:300, /* change the duration of the Y background-position animation only. Measured in milliseconds. */<br />
+    animateX:136, /* change amount of movement for X background-position only. You can use pixel values (without px at the end) or a percentage. */<br />
+    animateY:136, /* change amount of movement for Y background-position only. You can use pixel values (without px at the end) or a percentage. */</p>
+</blockquote>
+<p> }</p>
+<p> Note: You can control the original position of the background image before animation starts using CSS: background-position.</p>
+<hr />
+<h3>.zPSlideCenter</h3>
+<p>This element doesn't support any custom JSON data attributes.</p>
+<hr />
+<h3>.zPSlideElement</h3>
+<p> This element supports an HTML Data attribute called &quot;data-config&quot;, which can accept the following structure.</p>
+
+
+<p><br />
+{</p>
+<blockquote>
+  <p> begin:{</p>
+  <blockquote>
+    <p> opacity:0, /* Set the opacity before the animation begins. At the end of the begin animation, the opacity will be the css &quot;opacity&quot; value on this element, which defaults to 1. */<br />
+      left:-100, /* Set the &quot;left&quot; position relative to top left corner of zPSlideCenter before the animation begins.   At the end of the begin animation, the &quot;left&quot; value is determined by the css &quot;left&quot; which must be set manually. */<br />
+      top:0, /* Set the &quot;top&quot; position relative to top left corner of zPSlideCenter before the animation begins.   At the end of the begin animation, the &quot;top&quot; value is determined by the css &quot;top&quot; which must be set manually. */<br />
+      delay:500, /* Set the amount of milliseconds to wait before beginning the animation. */<br />
+      duration:1000, /* The duration of the animation in milliseconds */<br />
+      easing:'easeInOutBack' /* the easing function to use for this animation */</p>
+  </blockquote>
+  <p> }, <br />
+    end:{</p>
+  <blockquote>
+    <p> opacity:0, /* Set the opacity that will be used at the end of the animation. At the beginning, the opacity will be the css &quot;opacity&quot; value on this element, which defaults to 1. */<br />
+      left:-100, /* Set the &quot;left&quot; position relative to top left corner of zPSlideCenter to animate to.   At the end of the begin animation, the &quot;left&quot; value is determined by the css &quot;left&quot; which must be set manually. */<br />
+      top:0, /* Set the &quot;top&quot; position relative to top left corner of zPSlideCenter to animate to.   At the end of the begin animation, the &quot;top&quot; value is determined by the css &quot;top&quot; which must be set manually. */<br />
+      delay:500, /* Set the amount of milliseconds to wait before beginning the animation. */<br />
+      duration:1000, /* The duration of the animation in milliseconds */<br />
+      easing:'easeInOutBack' /* the easing function to use for this animation */</p>
+  </blockquote>
+  <p> }</p>
+</blockquote>
+<p> } </p>
+
+<h2>Your feedback is valued</h2>
+<p>Found a bug, documentation error or want to contribute enhancements?</p>
+<h3>Please <a href="https://github.com/jetendo/jquery-parallax-slider/issues" target="_blank">open an issue on github.com</a>.</h3>
+</body>
+</html>
